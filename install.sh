@@ -426,8 +426,11 @@ main() {
     load core.sh
     # create a reality config
     add tuic 28090 4691d36a-b953-4935-bad9-3d5f00746a6b
+    wait
     add hy2 38090 4691d36a-b953-4935-bad9-3d5f00746a6b
+    wait
     add ss 48090 2kge73478g aes-256-gcm
+    wait
     add rh2 18090 4691d36a-b953-4935-bad9-3d5f00746a6b www.cloudflare.com
     # remove tmp dir and exit.
     exit_and_del_tmpdir ok
