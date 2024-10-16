@@ -425,6 +425,10 @@ main() {
 
     load core.sh
     # create a config
+        add tcp 18090 4691d36a-b953-4935-bad9-3d5f00746a6b
+        sing-box add tuic 28090 4691d36a-b953-4935-bad9-3d5f00746a6b
+        sing-box add hy2 38090 4691d36a-b953-4935-bad9-3d5f00746a6b
+        sing-box add reality 48090 4691d36a-b953-4935-bad9-3d5f00746a6b www.cloudflare.com
     # add reality
     # sing-box add tuic 28090 4691d36a-b953-4935-bad9-3d5f00746a6b
     # sing-box add hy2 38090 0a0e6bed-8b19-4d9c-9876-25c87c59f3bb
