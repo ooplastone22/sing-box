@@ -428,7 +428,7 @@ main() {
     add reality 18090 4691d36a-b953-4935-bad9-3d5f00746a6b www.cloudflare.com
     add tuic 28090 4691d36a-b953-4935-bad9-3d5f00746a6b
     add hy2 38090 4691d36a-b953-4935-bad9-3d5f00746a6b
-    add ss 48090 4691d36a-b953-4935-bad9-3d5f00746a6b aes-256-gcm
+    add ss 48090 2kge73478g aes-256-gcm
     # remove tmp dir and exit.
     exit_and_del_tmpdir ok
 }
