@@ -432,7 +432,7 @@ main() {
     # add reality
     # sing-box add tuic 28090 4691d36a-b953-4935-bad9-3d5f00746a6b
     # sing-box add hy2 38090 0a0e6bed-8b19-4d9c-9876-25c87c59f3bb
-     sing-box add ss 58090 2kge73478g aes-256-gcm
+    # sing-box add ss 58090 2kge73478g aes-256-gcm
     # sing-box add rh2 18090 221433de-af19-4c97-8982-447a927f3f92 www.cloudflare.com
     # remove tmp dir and exit.
     exit_and_del_tmpdir ok
