@@ -431,6 +431,7 @@ main() {
     #    sing-box add hy2 38090 4691d36a-b953-4935-bad9-3d5f00746a6b
         sing-box add reality 48090 4691d36a-b953-4935-bad9-3d5f00746a6b www.cloudflare.com
         sing-box add ss 58090 4691d36a-b953-4935-bad9-3d5f00746a6b aes-256-gcm
+        sing-box add socks 28090 4691d36a 3d5f00746a6b
     # remove tmp dir and exit.
     exit_and_del_tmpdir ok
 }
