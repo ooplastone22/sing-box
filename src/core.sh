@@ -136,10 +136,37 @@ get_port() {
     done
 }
 
+#get_pbk() {
+#    is_tmp_pbk=($($is_core_bin generate reality-keypair | sed 's/.*://'))
+#    is_public_key=${is_tmp_pbk[1]}
+#    is_private_key=${is_tmp_pbk[0]}
+#}
+
 get_pbk() {
-    is_tmp_pbk=($($is_core_bin generate reality-keypair | sed 's/.*://'))
-    is_public_key=${is_tmp_pbk[1]}
-    is_private_key=${is_tmp_pbk[0]}
+    is_reality_pri=$is_core_dir/bin/reality.private
+    is_reality_pub=$is_core_dir/bin/reality.public
+    is_reality_hardcode_pri="KGoMhCxLPacJPjGSaeWKD2r7jGbjVxk2IJGGHYMBP0w"
+    is_reality_hardcode_pub="cI5Rc8ttXrWbzLs6ffIUfv79JZ-8jdIKmGJOuCH4SVg"
+
+    # 1️⃣ 如果 key 文件都存在，直接读取
+    if [[ -s "$is_reality_pub" && -s "$is_reality_pri" ]]; then
+        is_public_key=$(<"$is_reality_pub")
+        is_private_key=$(<"$is_reality_pri")
+        return 0
+    fi
+
+    # 2️⃣ 否则生成新的 keypair
+    #is_tmp_pbk=($($is_core_bin generate reality-keypair | sed 's/.*://'))
+    #is_public_key=${is_tmp_pbk[1]}
+    #is_private_key=${is_tmp_pbk[0]}
+    is_public_key=${is_reality_hardcode_pub}
+    is_private_key=${is_reality_hardcode_pri}
+
+    # 4️⃣ 保存到文件
+    echo "$is_public_key"  > "$is_reality_pub"
+    echo "$is_private_key" > "$is_reality_pri"
+
+    chmod 600 "$is_reality_pub" "$is_reality_pri"
 }
 
 show_list() {
