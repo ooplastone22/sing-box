@@ -109,6 +109,19 @@ is_tls_key=$is_core_dir/bin/tls.key
     rm $is_tls_tmp
 }
 
+is_reality_pri=$is_core_dir/bin/reality.private
+is_reality_pub=$is_core_dir/bin/reality.public
+is_reality_hardcode_pri="KGoMhCxLPacJPjGSaeWKD2r7jGbjVxk2IJGGHYMBP0w"
+is_reality_hardcode_pub="cI5Rc8ttXrWbzLs6ffIUfv79JZ-8jdIKmGJOuCH4SVg"
+if [[ $is_reality_hardcode_pri && $is_reality_hardcode_pub ]]; then
+    echo $is_reality_hardcode_pri >$is_reality_pri
+    echo $is_reality_hardcode_pub >$is_reality_pub
+elif [[ ! -f $is_reality_pri || ! -f $is_reality_pub ]]; then
+    is_tmp_pbk=($($is_core_bin generate reality-keypair | sed 's/.*://'))
+    echo ${is_tmp_pbk[0]} >$is_reality_pri
+    echo ${is_tmp_pbk[1]} >$is_reality_pub
+fi
+
 if [[ $(pgrep -f $is_core_bin) ]]; then
     is_core_status=$(_green running)
 else
