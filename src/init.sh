@@ -149,6 +149,8 @@ if [[ -f $is_caddy_bin && -d $is_caddy_dir && $is_caddy_service ]]; then
     fi
 fi
 
+[[ ! $is_node_name ]] && is_node_name=default
+
 load core.sh
 [[ ! $args ]] && args=main
 main $args
