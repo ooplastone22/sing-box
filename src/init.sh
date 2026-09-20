@@ -153,4 +153,4 @@ fi
 
 load core.sh
 [[ ! $args ]] && args=main
-main $args
+main "${args[@]}"
