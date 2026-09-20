@@ -1607,7 +1607,7 @@ main() {
     a | add | gen | no-auto-tls)
         [[ $1 == 'gen' ]] && is_gen=1
         [[ $1 == 'no-auto-tls' ]] && is_no_auto_tls=1
-        add ${@:2}
+        add "${@:2}"
         ;;
     bin | pbk | check | completion | format | generate | geoip | geosite | merge | rule-set | run | tools)
         is_run_command=$1
@@ -1623,7 +1623,7 @@ main() {
         _try_enable_bbr
         ;;
     c | config | change)
-        change ${@:2}
+        change "${@:2}"
         ;;
     # client | genc)
     #     create client $2
@@ -1667,7 +1667,7 @@ main() {
         ;;
     dns)
         load dns.sh
-        dns_set ${@:2}
+        dns_set "${@:2}"
         ;;
     debug)
         is_debug=1
@@ -1702,7 +1702,7 @@ main() {
         log_set $2
         ;;
     url | qr)
-        url_qr $@
+        url_qr "$@"
         ;;
     un | uninstall)
         uninstall
@@ -1718,7 +1718,7 @@ main() {
         update $is_update_name $is_update_ver
         ;;
     ssss | ss2022)
-        get $@
+        get "$@"
         ;;
     s | status)
         msg "\n$is_core_name $is_core_ver: $is_core_status\n"
@@ -1747,7 +1747,7 @@ main() {
         ;;
     h | help | --help)
         load help.sh
-        show_help ${@:2}
+        show_help "${@:2}"
         ;;
     *)
         is_try_change=1
