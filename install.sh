@@ -127,6 +127,7 @@ show_help() {
     echo -e "  -l, --local-install             本地获取安装脚本, 使用当前目录"
     echo -e "  -p, --proxy <addr>              使用代理下载, e.g., -p http://127.0.0.1:2333"
     echo -e "  -v, --core-version <ver>        自定义 $is_core_name 版本, e.g., -v v1.8.13"
+    echo -e "  -n, --name <name>               自定义节点名称, e.g., -n abc (默认: default)"
     echo -e "  -h, --help                      显示此帮助界面\n"
 
     exit 0
@@ -266,6 +267,13 @@ pass_args() {
                 err "($1) 缺少必需参数, 正确使用示例: [$1 v1.8.13]"
             }
             is_core_ver=v${2//v/}
+            shift 2
+            ;;
+        -n | --name)
+            [[ -z $2 ]] && {
+                err "($1) 缺少必需参数, 正确使用示例: [$1 abc]"
+            }
+            node_name=$2
             shift 2
             ;;
         -h | --help)
@@ -425,12 +433,13 @@ main() {
     mkdir -p $is_conf_dir
 
     load core.sh
+    is_node_name=${node_name:-default}
     # create a reality config
-        add tcp 18090 4691d36a-b953-4935-bad9-3d5f00746a6b
-        sing-box add tuic 28090 4691d36a-b953-4935-bad9-3d5f00746a6b
-    #    sing-box add hy2 38090 4691d36a-b953-4935-bad9-3d5f00746a6b
-        sing-box add reality 48090 4691d36a-b953-4935-bad9-3d5f00746a6b www.icloud.com
-    #    sing-box add ss 58090 4691d36a-b953-4935-bad9-3d5f00746a6b aes-256-gcm
+        add -n "$is_node_name" tcp 18090 4691d36a-b953-4935-bad9-3d5f00746a6b
+        sing-box add -n "$is_node_name" tuic 28090 4691d36a-b953-4935-bad9-3d5f00746a6b
+    #    sing-box add -n "$is_node_name" hy2 38090 4691d36a-b953-4935-bad9-3d5f00746a6b
+        sing-box add -n "$is_node_name" reality 48090 4691d36a-b953-4935-bad9-3d5f00746a6b www.icloud.com
+    #    sing-box add -n "$is_node_name" ss 58090 4691d36a-b953-4935-bad9-3d5f00746a6b aes-256-gcm
     #    sing-box add socks 28090 4691d36a 3d5f00746a6b
         sing-box bbr
     # remove tmp dir and exit.
